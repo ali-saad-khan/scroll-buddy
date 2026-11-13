@@ -1,0 +1,41 @@
+export const STYLE_ID = "scroll-buddy-styles";
+
+export const css = `
+:root{--sb-main:#FF6B2C;--sb-accent:#FFD21F;--sb-ink:#141414;--sb-bg:#FFF6E0;--sb-warn:#FF6B2C;--sb-trace:#FF6B2C;}
+.sb-trace,.sb-layer{display:none}
+.sb-on .sb-trace{display:block;position:absolute;inset:0;pointer-events:none;overflow:clip}
+.sb-on .sb-layer{display:block;position:absolute;inset:0;pointer-events:none;overflow:clip}
+.sb-trace svg{position:absolute;inset:0;width:100%;height:100%}
+.sb-trace path{fill:none;stroke:var(--sb-trace);stroke-linecap:round;vector-effect:non-scaling-stroke}
+.sb-rider{position:absolute;left:0;top:0;width:0;height:0;will-change:transform}
+.sb-pose{position:absolute;left:0;top:0;opacity:0;transition:opacity .18s ease;pointer-events:none}
+.sb-pose svg{display:block;overflow:visible}
+.sb-rider[data-pose="walk"] .sb-pose[data-for="walk"],.sb-rider[data-pose="climb"] .sb-pose[data-for="climb"],.sb-rider[data-pose="wave"] .sb-pose[data-for="wave"]{opacity:1}
+.sb-rider[data-pose="walk"] .sb-pose[data-for="walk"] svg,.sb-rider[data-pose="climb"] .sb-pose[data-for="climb"] svg{animation:sbStep .45s ease-in-out infinite alternate}
+@keyframes sbStep{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-3px) rotate(2deg)}}
+.sb-fill-main{fill:var(--sb-main)}.sb-fill-accent{fill:var(--sb-accent)}.sb-fill-ink{fill:var(--sb-ink)}.sb-fill-bg{fill:var(--sb-bg)}.sb-fill-warn{fill:var(--sb-warn)}
+.sb-stroke-main{stroke:var(--sb-main)}.sb-stroke-ink{stroke:var(--sb-ink)}
+.sb-blink{animation:sbBlink 1.2s ease-in-out infinite}@keyframes sbBlink{50%{opacity:.25}}
+.sb-arm{transform-box:fill-box;transform-origin:0 100%;animation:sbWave .5s ease-in-out infinite alternate}
+@keyframes sbWave{from{transform:rotate(-14deg)}to{transform:rotate(16deg)}}
+.sb-wake{position:absolute;left:0;top:0;opacity:0;white-space:nowrap;pointer-events:none;font:700 14px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--sb-main)}
+.sb-wake.is-puff{animation:sbWake .75s cubic-bezier(.2,.7,.3,1) both}
+@keyframes sbWake{0%{opacity:1}100%{opacity:0;translate:-22px -34px;scale:1.5;rotate:-24deg}}
+.sb-glow .sb-pose svg{filter:drop-shadow(0 0 8px var(--sb-bg))}
+@keyframes sbPop{40%{transform:scale(1.05)}100%{transform:none}}.sb-fx-pop{animation:sbPop .65s cubic-bezier(.34,1.56,.64,1)}
+@keyframes sbTilt{35%{transform:rotate(-2.4deg) translateY(-6px)}70%{transform:rotate(1.2deg)}100%{transform:none}}.sb-fx-tilt{animation:sbTilt .85s cubic-bezier(.34,1.56,.64,1)}
+@keyframes sbBump{30%{transform:translateY(-8px)}100%{transform:none}}.sb-fx-bump{animation:sbBump .6s ease}
+@keyframes sbNudge{40%{transform:translateX(10px)}100%{transform:none}}.sb-fx-nudge{animation:sbNudge .7s ease}
+@keyframes sbWobble{25%{transform:rotate(-5deg) scale(1.05)}60%{transform:rotate(2.5deg)}100%{transform:none}}.sb-fx-wobble{display:inline-block;animation:sbWobble .85s ease}
+@keyframes sbJitter{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}100%{transform:none}}.sb-fx-jitter{animation:sbJitter .6s ease}
+@keyframes sbSwing{0%{transform:rotate(0)}25%{transform:rotate(-30deg)}55%{transform:rotate(20deg)}80%{transform:rotate(-8deg)}100%{transform:rotate(0)}}.sb-fx-swing{transform-origin:50% 0;animation:sbSwing 1.3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes sbFlash{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 3px var(--sb-main),0 0 36px var(--sb-main)}}.sb-fx-flash{animation:sbFlash .9s ease}
+@media (prefers-reduced-motion:reduce){.sb-fx-pop,.sb-fx-tilt,.sb-fx-bump,.sb-fx-nudge,.sb-fx-wobble,.sb-fx-jitter,.sb-fx-swing,.sb-fx-flash,.sb-arm,.sb-blink{animation:none!important}}
+`;
+
+let injected = false;
+export function injectStyles(doc = document) {
+  if (injected || doc.getElementById(STYLE_ID)) { injected = true; return; }
+  const s = doc.createElement("style");
+  s.id = STYLE_ID; s.textContent = css; doc.head.appendChild(s); injected = true;
+}

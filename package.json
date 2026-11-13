@@ -1,0 +1,31 @@
+{
+  "name": "scroll-buddy",
+  "version": "1.0.0",
+  "description": "A tiny mascot that crawls down a zig-zag trace as you scroll. Walks, climbs, waves, leaves a wake and pokes your page. Framework-free, zero dependencies.",
+  "keywords": ["scroll", "scroll-animation", "mascot", "scroll-driven", "zigzag", "svg", "animation", "delight", "microinteraction"],
+  "license": "MIT",
+  "author": "Saad Ali Khan",
+  "homepage": "https://github.com/ali-saad-khan/scroll-buddy#readme",
+  "repository": { "type": "git", "url": "git+ssh://git@github.com/ali-saad-khan/scroll-buddy.git" },
+  "bugs": { "url": "https://github.com/ali-saad-khan/scroll-buddy/issues" },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/scroll-buddy.cjs",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": { "types": "./src/index.d.ts", "import": "./src/index.js", "require": "./dist/scroll-buddy.cjs" },
+    "./style.css": "./dist/scroll-buddy.css",
+    "./package.json": "./package.json"
+  },
+  "unpkg": "./dist/scroll-buddy.iife.js",
+  "jsdelivr": "./dist/scroll-buddy.iife.js",
+  "files": ["src", "dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.js",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "devDependencies": { "esbuild": "^0.25.0", "jsdom": "^26.0.0" },
+  "engines": { "node": ">=18" }
+}

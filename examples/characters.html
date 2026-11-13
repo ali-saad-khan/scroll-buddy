@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>scroll-buddy characters</title>
+<link rel="stylesheet" href="../dist/scroll-buddy.css">
+<style>body{font:16px system-ui;margin:0;padding:32px;background:#FFF6E0;color:#141414}h1{margin:0 0 24px}.row{display:flex;gap:28px;margin:0 0 28px;align-items:center;flex-wrap:wrap}.cell{text-align:center;background:#fff;border:2px solid #141414;border-radius:16px;padding:18px 22px}.cell svg{display:block;margin:0 auto 8px;overflow:visible}.dark{background:#0B1511;--sb-bg:#11261D;--sb-main:#7FD9A8;--sb-ink:#0B1511;--sb-warn:#FF8A66}.dark .cell{background:#14231c;color:#fff;border-color:#7FD9A8}code{font-size:12px}</style></head>
+<body><h1>scroll-buddy characters</h1>
+<div class="row" id="pip"></div>
+<div class="row dark" id="bit"></div>
+<script src="../dist/scroll-buddy.iife.js"></script>
+<script>
+for (const name of ["pip","bit"]) { const c = ScrollBuddy.characters[name]; const row = document.getElementById(name);
+  for (const p of ["walk","climb","wave"]) { const d=document.createElement("div"); d.className="cell"; d.innerHTML=c.poses[p]+"<code>"+name+" · "+p+"</code>"; const s=d.querySelector("svg"); s.setAttribute("width",110); s.setAttribute("height",110); row.appendChild(d); }
+  c.wake.forEach((w,i)=>{ const d=document.createElement("div"); d.className="cell"; d.innerHTML=(/^<[a-z]/i.test(w)?w:"<b style='font:700 20px monospace;color:var(--sb-main)'>"+w+"</b>")+"<br><code>wake "+(i+1)+"</code>"; row.appendChild(d); }); }
+</script></body></html>
