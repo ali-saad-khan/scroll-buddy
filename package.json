@@ -1,6 +1,6 @@
 {
   "name": "scroll-buddy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A tiny mascot that crawls down a zig-zag trace as you scroll. Walks, climbs, waves, leaves a wake and pokes your page. Framework-free, zero dependencies.",
   "keywords": ["scroll", "scroll-animation", "mascot", "scroll-driven", "zigzag", "svg", "animation", "delight", "microinteraction"],
   "license": "MIT",
@@ -20,7 +20,7 @@
   },
   "unpkg": "./dist/scroll-buddy.iife.js",
   "jsdelivr": "./dist/scroll-buddy.iife.js",
-  "files": ["src", "dist", "README.md", "LICENSE"],
+  "files": ["src", "dist", "README.md", "CHANGELOG.md", "LICENSE"],
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test test/*.test.js",

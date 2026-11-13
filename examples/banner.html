@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../dist/scroll-buddy.css">
+<style>
+ html,body{margin:0}body{width:1280px;height:440px;position:relative;overflow:hidden;background:#0B1511;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#F3EFE4}
+ .glow{position:absolute;inset:0;background:radial-gradient(60% 90% at 78% 40%,rgba(127,217,168,.22),transparent 60%),radial-gradient(50% 80% at 12% 90%,rgba(255,107,44,.18),transparent 60%)}
+ svg.trace{position:absolute;inset:0;width:100%;height:100%}
+ h1{position:absolute;left:80px;top:118px;margin:0;font-size:96px;letter-spacing:-.04em;line-height:1}
+ h1 span{color:#7FD9A8}
+ p{position:absolute;left:84px;top:236px;margin:0;font-size:27px;line-height:1.45;max-width:640px;color:#BFC8BF}
+ .pill{position:absolute;left:84px;top:350px;display:flex;gap:12px}
+ .pill b{font:600 17px ui-monospace,Menlo,Consolas,monospace;border:1.5px solid #7FD9A8;color:#7FD9A8;border-radius:99px;padding:7px 16px}
+ .c{position:absolute}
+ --sb-main:#FF6B2C;
+</style></head><body><div class="glow"></div>
+<svg class="trace" viewBox="0 0 1280 440" preserveAspectRatio="none"><path d="M 760 -10 C 760 120, 1190 90, 1190 210 C 1190 330, 800 300, 800 430" fill="none" stroke="#FF8A66" stroke-width="3" stroke-dasharray="3 11" stroke-linecap="round" opacity=".7"/></svg>
+<h1>scroll<span>-buddy</span></h1>
+<p>A tiny mascot that crawls a zig-zag trace down your page as you scroll.</p>
+<div class="pill"><b>0 deps</b><b>~17 KB</b><b>TypeScript</b><b>a11y-first</b></div>
+<div class="c" id="pip" style="left:1030px;top:60px;width:130px;height:130px;transform:rotate(18deg)"></div>
+<div class="c" id="bit" style="left:735px;top:300px;width:130px;height:130px;transform:rotate(-8deg)"></div>
+<script src="../dist/scroll-buddy.iife.js"></script>
+<script>
+ const put=(id,name,pose)=>{const d=document.getElementById(id);d.innerHTML=ScrollBuddy.characters[name].poses[pose];const s=d.querySelector('svg');s.setAttribute('width',130);s.setAttribute('height',130);s.style.overflow='visible';};
+ put('pip','pip','wave'); put('bit','bit','walk');
+ document.getElementById('bit').style.cssText+='--sb-bg:#11261D;--sb-main:#7FD9A8;--sb-ink:#0B1511;--sb-warn:#FF8A66';
+</script></body></html>
